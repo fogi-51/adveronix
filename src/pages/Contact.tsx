@@ -19,8 +19,11 @@ import {
   CheckCircle2,
   ArrowRight,
   Calendar,
+  Loader2,
 } from "lucide-react";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const contactInfo = [
   {
@@ -70,11 +73,47 @@ const budgets = [
 
 export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    website: "",
+    service: "",
+    budget: "",
+    message: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would submit to a backend
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      });
+
+      if (error) {
+        console.error("Error sending email:", error);
+        toast.error("Failed to send message. Please try again.");
+        return;
+      }
+
+      console.log("Email sent successfully:", data);
+      setFormSubmitted(true);
+      toast.success("Message sent successfully!");
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,11 +189,23 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>
-                        <Input id="firstName" required placeholder="John" />
+                        <Input 
+                          id="firstName" 
+                          required 
+                          placeholder="John"
+                          value={formData.firstName}
+                          onChange={(e) => handleInputChange("firstName", e.target.value)}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="lastName">Last Name *</Label>
-                        <Input id="lastName" required placeholder="Smith" />
+                        <Input 
+                          id="lastName" 
+                          required 
+                          placeholder="Smith"
+                          value={formData.lastName}
+                          onChange={(e) => handleInputChange("lastName", e.target.value)}
+                        />
                       </div>
                     </div>
 
@@ -166,6 +217,8 @@ export default function Contact() {
                           type="email"
                           required
                           placeholder="john@company.com"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange("email", e.target.value)}
                         />
                       </div>
                       <div className="space-y-2">
@@ -173,7 +226,9 @@ export default function Contact() {
                         <Input
                           id="phone"
                           type="tel"
-                          placeholder="+1 (234) 567-890"
+                          placeholder="+91 1234567890"
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange("phone", e.target.value)}
                         />
                       </div>
                     </div>
@@ -181,7 +236,13 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="company">Company Name *</Label>
-                        <Input id="company" required placeholder="Your Company" />
+                        <Input 
+                          id="company" 
+                          required 
+                          placeholder="Your Company"
+                          value={formData.company}
+                          onChange={(e) => handleInputChange("company", e.target.value)}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="website">Website URL</Label>
@@ -189,6 +250,8 @@ export default function Contact() {
                           id="website"
                           type="url"
                           placeholder="https://yourcompany.com"
+                          value={formData.website}
+                          onChange={(e) => handleInputChange("website", e.target.value)}
                         />
                       </div>
                     </div>
@@ -196,7 +259,11 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label>Service Interested In *</Label>
-                        <Select required>
+                        <Select 
+                          required
+                          value={formData.service}
+                          onValueChange={(value) => handleInputChange("service", value)}
+                        >
                           <SelectTrigger>
                             <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
@@ -211,7 +278,10 @@ export default function Contact() {
                       </div>
                       <div className="space-y-2">
                         <Label>Monthly Marketing Budget</Label>
-                        <Select>
+                        <Select
+                          value={formData.budget}
+                          onValueChange={(value) => handleInputChange("budget", value)}
+                        >
                           <SelectTrigger>
                             <SelectValue placeholder="Select budget range" />
                           </SelectTrigger>
@@ -233,12 +303,29 @@ export default function Contact() {
                         required
                         rows={5}
                         placeholder="What are your main marketing challenges? What would success look like for you?"
+                        value={formData.message}
+                        onChange={(e) => handleInputChange("message", e.target.value)}
                       />
                     </div>
 
-                    <Button type="submit" variant="accent" size="lg" className="w-full">
-                      Book My Free Strategy Call
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                    <Button 
+                      type="submit" 
+                      variant="accent" 
+                      size="lg" 
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Book My Free Strategy Call
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </>
+                      )}
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
