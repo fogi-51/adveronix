@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, TrendingUp, Users, Target } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
   { value: "500+", label: "Clients Served", icon: Users },
@@ -14,7 +13,7 @@ export function Hero() {
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image - Using img tag for LCP optimization */}
       <img 
-        src={heroBg}
+        src="/images/hero-bg.jpg"
         alt=""
         fetchPriority="high"
         decoding="async"
