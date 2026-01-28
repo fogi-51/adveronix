@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+
 const footerLinks = {
   services: [{
     name: "Facebook & Instagram Ads",
@@ -49,6 +53,7 @@ const footerLinks = {
     href: "/terms"
   }]
 };
+
 const socialLinks = [{
   icon: Facebook,
   href: "https://facebook.com",
@@ -66,8 +71,46 @@ const socialLinks = [{
   href: "https://twitter.com",
   label: "Twitter"
 }];
+
 export function Footer() {
-  return <footer className="bg-primary text-primary-foreground">
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email.trim()) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('send-newsletter-subscription', {
+        body: { email: email.trim() }
+      });
+
+      if (error) throw error;
+
+      toast.success("Thank you for subscribing! You'll receive our marketing insights soon.");
+      setEmail("");
+    } catch (error: any) {
+      console.error("Subscription error:", error);
+      toast.error("Failed to subscribe. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <footer className="bg-primary text-primary-foreground">
       {/* Newsletter Section */}
       <div className="border-b border-white/10">
         <div className="container-wide py-12">
@@ -80,12 +123,28 @@ export function Footer() {
                 Subscribe for weekly tips on growing your business online.
               </p>
             </div>
-            <div className="flex gap-3 w-full lg:w-auto">
-              <Input type="email" placeholder="Enter your email" className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 w-full lg:w-80" />
-              <Button variant="accent" className="shrink-0">
-                Subscribe <ArrowRight className="ml-2 h-4 w-4" />
+            <form onSubmit={handleSubscribe} className="flex gap-3 w-full lg:w-auto">
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubmitting}
+                className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 w-full lg:w-80" 
+              />
+              <Button type="submit" variant="accent" className="shrink-0" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Subscribing...
+                  </>
+                ) : (
+                  <>
+                    Subscribe <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -125,11 +184,13 @@ export function Footer() {
           <div>
             <h4 className="font-bold font-display text-lg mb-4">Services</h4>
             <ul className="space-y-3">
-              {footerLinks.services.map(link => <li key={link.name}>
+              {footerLinks.services.map(link => (
+                <li key={link.name}>
                   <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors">
                     {link.name}
                   </Link>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -137,11 +198,13 @@ export function Footer() {
           <div>
             <h4 className="font-bold font-display text-lg mb-4">Company</h4>
             <ul className="space-y-3">
-              {footerLinks.company.map(link => <li key={link.name}>
+              {footerLinks.company.map(link => (
+                <li key={link.name}>
                   <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors">
                     {link.name}
                   </Link>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -149,11 +212,13 @@ export function Footer() {
           <div>
             <h4 className="font-bold font-display text-lg mb-4">Support</h4>
             <ul className="space-y-3">
-              {footerLinks.support.map(link => <li key={link.name}>
+              {footerLinks.support.map(link => (
+                <li key={link.name}>
                   <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors">
                     {link.name}
                   </Link>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -167,12 +232,22 @@ export function Footer() {
               © {new Date().getFullYear()} Adveronix Agency. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              {socialLinks.map(social => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors" aria-label={social.label}>
+              {socialLinks.map(social => (
+                <a 
+                  key={social.label} 
+                  href={social.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors" 
+                  aria-label={social.label}
+                >
                   <social.icon className="h-5 w-5" />
-                </a>)}
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 }
