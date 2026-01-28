@@ -26,19 +26,19 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    content: "hello@adveronix.com",
+    content: "info@supabased.site",
     subtext: "We'll respond within 24 hours",
   },
   {
     icon: Phone,
     title: "Call Us",
-    content: "+1 (234) 567-890",
-    subtext: "Mon-Fri 9am-6pm EST",
+    content: "+91 6290403092",
+    subtext: "Mon-Fri 9am-6pm IST",
   },
   {
     icon: MapPin,
     title: "Visit Us",
-    content: "New York, NY",
+    content: "Kolkata, India",
     subtext: "By appointment only",
   },
   {
