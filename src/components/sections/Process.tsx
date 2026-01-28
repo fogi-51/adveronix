@@ -58,7 +58,7 @@ export function Process() {
               
               <div className="bg-card rounded-2xl p-8 border border-border relative z-10 h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-5xl font-bold text-accent/20 font-display">
+                  <span className="text-5xl font-bold text-accent/40 font-display">
                     {step.number}
                   </span>
                   <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center">
