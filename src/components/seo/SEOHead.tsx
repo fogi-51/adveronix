@@ -93,15 +93,15 @@ export const organizationSchema = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-234-567-890",
+    telephone: "+91-6290403092",
     contactType: "customer service",
-    email: "hello@adveronix.com",
+    email: "info@supabased.site",
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "New York",
-    addressRegion: "NY",
-    addressCountry: "US",
+    addressLocality: "Kolkata",
+    addressRegion: "West Bengal",
+    addressCountry: "IN",
   },
 };
 
@@ -112,15 +112,15 @@ export const localBusinessSchema = {
   name: "Adveronix Agency",
   description: "Digital marketing agency providing Facebook Ads, Google Ads, SEO, and lead generation services.",
   url: "https://adveronix.com",
-  telephone: "+1-234-567-890",
-  email: "hello@adveronix.com",
+  telephone: "+91-6290403092",
+  email: "info@supabased.site",
   priceRange: "$$",
   openingHours: "Mo-Fr 09:00-18:00",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "New York",
-    addressRegion: "NY",
-    addressCountry: "US",
+    addressLocality: "Kolkata",
+    addressRegion: "West Bengal",
+    addressCountry: "IN",
   },
   aggregateRating: {
     "@type": "AggregateRating",
