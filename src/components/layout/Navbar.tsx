@@ -47,7 +47,7 @@ export function Navbar() {
                 <Button
                   variant="nav"
                   size="sm"
-                  className={isActive(link.href) ? "text-accent" : ""}
+                  className={isActive(link.href) ? "text-orange-300" : ""}
                 >
                   {link.name}
                 </Button>
@@ -101,7 +101,7 @@ export function Navbar() {
                 to={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`block py-3 px-4 rounded-lg text-primary-foreground/90 hover:bg-white/10 transition-colors ${
-                  isActive(link.href) ? "text-accent bg-white/5" : ""
+                  isActive(link.href) ? "text-orange-300 bg-white/5" : ""
                 }`}
               >
                 {link.name}
