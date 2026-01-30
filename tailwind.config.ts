@@ -66,6 +66,7 @@ export default {
           DEFAULT: "hsl(var(--orange))",
           light: "hsl(var(--orange-light))",
           dark: "hsl(var(--orange-dark))",
+          300: "hsl(18 100% 65%)",
         },
         cream: "hsl(var(--cream))",
         success: {
