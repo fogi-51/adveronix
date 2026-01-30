@@ -9,6 +9,40 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Simple in-memory rate limiting (resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 5; // Max requests per window
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+  
+  record.count++;
+  return false;
+}
+
+// HTML escape function to prevent XSS in emails
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
 interface ContactFormData {
   firstName: string;
   lastName: string;
@@ -28,14 +62,44 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Rate limiting check
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    if (isRateLimited(clientIp)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const formData: ContactFormData = await req.json();
-    console.log("Received contact form submission:", formData);
+    console.log("Received contact form submission from:", clientIp);
 
     // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.company || !formData.service || !formData.message) {
       console.error("Missing required fields");
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Validate field lengths
+    if (formData.firstName.length > 100 || formData.lastName.length > 100 || 
+        formData.email.length > 255 || formData.company.length > 200 ||
+        formData.message.length > 5000) {
+      console.error("Field length exceeded");
+      return new Response(
+        JSON.stringify({ error: "Input exceeds maximum length" }),
         {
           status: 400,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -55,6 +119,17 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
+
+    // Escape all user inputs for safe HTML rendering
+    const safeFirstName = escapeHtml(formData.firstName);
+    const safeLastName = escapeHtml(formData.lastName);
+    const safeEmail = escapeHtml(formData.email);
+    const safePhone = formData.phone ? escapeHtml(formData.phone) : null;
+    const safeCompany = escapeHtml(formData.company);
+    const safeWebsite = formData.website ? escapeHtml(formData.website) : null;
+    const safeService = escapeHtml(formData.service);
+    const safeBudget = formData.budget ? escapeHtml(formData.budget) : null;
+    const safeMessage = escapeHtml(formData.message);
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -83,46 +158,46 @@ const handler = async (req: Request): Promise<Response> => {
           <div class="content">
             <div class="field">
               <div class="label">👤 Name</div>
-              <div class="value">${formData.firstName} ${formData.lastName}</div>
+              <div class="value">${safeFirstName} ${safeLastName}</div>
             </div>
             <div class="field">
               <div class="label">📧 Email</div>
-              <div class="value"><a href="mailto:${formData.email}">${formData.email}</a></div>
+              <div class="value"><a href="mailto:${safeEmail}">${safeEmail}</a></div>
             </div>
-            ${formData.phone ? `
+            ${safePhone ? `
             <div class="field">
               <div class="label">📱 Phone</div>
-              <div class="value"><a href="tel:${formData.phone}">${formData.phone}</a></div>
+              <div class="value"><a href="tel:${safePhone}">${safePhone}</a></div>
             </div>
             ` : ''}
             <div class="field">
               <div class="label">🏢 Company</div>
-              <div class="value">${formData.company}</div>
+              <div class="value">${safeCompany}</div>
             </div>
-            ${formData.website ? `
+            ${safeWebsite ? `
             <div class="field">
               <div class="label">🌐 Website</div>
-              <div class="value"><a href="${formData.website}" target="_blank">${formData.website}</a></div>
+              <div class="value"><a href="${safeWebsite}" target="_blank">${safeWebsite}</a></div>
             </div>
             ` : ''}
             <div class="field">
               <div class="label">🎯 Service Interested In</div>
-              <div class="value highlight">${formData.service}</div>
+              <div class="value highlight">${safeService}</div>
             </div>
-            ${formData.budget ? `
+            ${safeBudget ? `
             <div class="field">
               <div class="label">💰 Monthly Budget</div>
-              <div class="value">${formData.budget}</div>
+              <div class="value">${safeBudget}</div>
             </div>
             ` : ''}
             <div class="field">
               <div class="label">💬 Message</div>
-              <div class="message-box">${formData.message}</div>
+              <div class="message-box">${safeMessage}</div>
             </div>
           </div>
           <div class="footer">
             <p>This email was sent from your Adveronix Agency website contact form.</p>
-            <p>Reply directly to this email or contact <strong>${formData.email}</strong></p>
+            <p>Reply directly to this email or contact <strong>${safeEmail}</strong></p>
           </div>
         </div>
       </body>
@@ -135,20 +210,21 @@ const handler = async (req: Request): Promise<Response> => {
       from: "Adveronix Contact <onboarding@resend.dev>",
       to: ["info@supabased.site"],
       reply_to: formData.email,
-      subject: `New Contact: ${formData.firstName} ${formData.lastName} - ${formData.service}`,
+      subject: `New Contact: ${safeFirstName} ${safeLastName} - ${safeService}`,
       html: emailHtml,
     });
 
     console.log("Email sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify({ success: true, data: emailResponse }), {
+    return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   } catch (error: any) {
     console.error("Error in send-contact-email function:", error);
+    // Return generic error message to prevent information leakage
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Unable to process your request. Please try again later." }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
