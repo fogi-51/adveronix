@@ -56,7 +56,7 @@ const footerLinks = {
 
 const socialLinks = [{
   icon: Facebook,
-  href: "https://facebook.com",
+  href: "https://www.facebook.com/share/18KTKeokXK/",
   label: "Facebook"
 }, {
   icon: Instagram,
