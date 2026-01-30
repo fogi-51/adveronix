@@ -9,6 +9,40 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Simple in-memory rate limiting (resets on function cold start)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 3; // Max requests per window
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+  
+  record.count++;
+  return false;
+}
+
+// HTML escape function to prevent XSS in emails
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
 interface SubscriptionData {
   email: string;
 }
@@ -20,8 +54,24 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Rate limiting check
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    if (isRateLimited(clientIp)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const { email }: SubscriptionData = await req.json();
-    console.log("Received newsletter subscription:", email);
+    console.log("Received newsletter subscription from:", clientIp);
 
     // Validate email
     if (!email) {
@@ -38,7 +88,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      console.error("Invalid email format:", email);
+      console.error("Invalid email format");
       return new Response(
         JSON.stringify({ error: "Invalid email format" }),
         {
@@ -59,6 +109,9 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
+
+    // Escape email for safe HTML rendering
+    const safeEmail = escapeHtml(email);
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -84,10 +137,10 @@ const handler = async (req: Request): Promise<Response> => {
           <div class="content">
             <p>A new user has subscribed to your newsletter!</p>
             <div class="email-box">
-              <span class="highlight">${email}</span>
+              <span class="highlight">${safeEmail}</span>
             </div>
             <p style="margin-top: 20px; text-align: center;">
-              <a href="mailto:${email}" style="color: #f97316;">Click here to email them</a>
+              <a href="mailto:${safeEmail}" style="color: #f97316;">Click here to email them</a>
             </p>
           </div>
           <div class="footer">
@@ -104,20 +157,21 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Adveronix Newsletter <onboarding@resend.dev>",
       to: ["fogi.helpdesk@gmail.com"],
-      subject: `New Newsletter Subscriber: ${email}`,
+      subject: `New Newsletter Subscriber: ${safeEmail}`,
       html: emailHtml,
     });
 
     console.log("Subscription notification sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify({ success: true, data: emailResponse }), {
+    return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   } catch (error: any) {
     console.error("Error in send-newsletter-subscription function:", error);
+    // Return generic error message to prevent information leakage
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Unable to process your request. Please try again later." }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
