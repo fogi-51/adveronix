@@ -117,9 +117,8 @@ export function Services() {
               <Link
                 to="/services"
                 className="inline-flex items-center text-accent font-semibold hover:gap-3 gap-2 transition-all"
-                aria-label={`Learn more about ${service.title}`}
+                aria-label={`Learn More - ${service.title}`}
               >
-                <span className="sr-only">Learn more about {service.title}: </span>
                 Learn More <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
