@@ -95,17 +95,32 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
+      // Save to database
+      const { error: dbError } = await supabase.from("contacts").insert({
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        company: formData.company || null,
+        service: formData.service || null,
+        budget: formData.budget || null,
+        message: formData.message,
       });
 
-      if (error) {
-        console.error("Error sending email:", error);
-        toast.error("Failed to send message. Please try again.");
+      if (dbError) {
+        console.error("Error saving to database:", dbError);
+        toast.error("Failed to save message. Please try again.");
         return;
       }
 
-      console.log("Email sent successfully:", data);
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      });
+
+      if (emailError) {
+        console.error("Error sending email notification:", emailError);
+        // Don't fail the submission - the data is already saved
+      }
+
       setFormSubmitted(true);
       toast.success("Message sent successfully!");
     } catch (error) {
