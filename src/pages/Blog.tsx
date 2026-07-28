@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { SEOHead } from "@/components/seo/SEOHead";
+import { SEOHead, blogSchema } from "@/components/seo/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
@@ -99,7 +99,8 @@ export default function Blog() {
         title="Digital Marketing Blog | Insights & Strategies | Adveronix"
         description="Expert digital marketing insights, guides, and strategies. Learn about Facebook Ads, Google Ads, SEO, social media marketing, and more from the Adveronix team."
         keywords="digital marketing blog, marketing tips, Facebook Ads guide, SEO tips, social media strategies, PPC insights"
-        canonicalUrl="https://adveronix.com/blog"
+        canonicalUrl="https://adveronix.lovable.app/blog"
+        structuredData={blogSchema}
       />
       <Layout>
         {/* Hero Section */}

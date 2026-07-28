@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { SEOHead } from "@/components/seo/SEOHead";
+import { SEOHead, localBusinessSchema } from "@/components/seo/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -137,7 +137,8 @@ export default function Contact() {
         title="Contact Us | Book a Free Strategy Call | Adveronix Agency"
         description="Ready to grow your business with digital marketing? Contact Adveronix for a free strategy call. Let's discuss how we can help you achieve your marketing goals."
         keywords="contact Adveronix, digital marketing consultation, free marketing audit, marketing strategy call"
-        canonicalUrl="https://adveronix.com/contact"
+        canonicalUrl="https://adveronix.lovable.app/contact"
+        structuredData={localBusinessSchema}
       />
       <Layout>
         {/* Hero Section */}
