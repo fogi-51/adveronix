@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "sdk_version": "0.25.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "adveronix-mcp",
+      "version": "0.1.0",
+      "title": "Adveronix MCP"
+    },
+    "tools": [
+      {
+        "name": "get_company_info",
+        "title": "Get Adveronix company info",
+        "description": "Return an overview of Adveronix: services offered, key pages, and how to get in touch.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "subscribe_newsletter",
+        "title": "Subscribe to newsletter",
+        "description": "Subscribe an email address to the Adveronix newsletter. Sends a notification to the Adveronix team.",
+        "annotations": {
+          "readOnlyHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "Email address to subscribe."
+            }
+          },
+          "required": [
+            "email"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_contact_inquiry",
+        "title": "Submit contact inquiry",
+        "description": "Submit a contact / strategy call inquiry to the Adveronix team. Use when a user wants to book a free strategy call or reach out about a project.",
+        "annotations": {
+          "readOnlyHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Contact first name."
+            },
+            "lastName": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Contact last name."
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "Contact email address."
+            },
+            "phone": {
+              "type": "string",
+              "description": "Optional phone number."
+            },
+            "company": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Company name."
+            },
+            "website": {
+              "type": "string",
+              "description": "Optional company website URL."
+            },
+            "service": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Service of interest (e.g. SEO, Paid Ads, Web Design, Content Marketing)."
+            },
+            "budget": {
+              "type": "string",
+              "description": "Optional monthly budget range."
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Message describing the project or goals."
+            }
+          },
+          "required": [
+            "firstName",
+            "lastName",
+            "email",
+            "company",
+            "service",
+            "message"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
