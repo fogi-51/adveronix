@@ -8,7 +8,7 @@ const Terms = () => {
         title="Terms of Service | Adveronix Agency"
         description="Read the terms and conditions for using Adveronix Agency's digital marketing services. Understand your rights and obligations."
         keywords="terms of service, terms and conditions, Adveronix terms, service agreement"
-        canonicalUrl="https://adveronix.com/terms"
+        canonicalUrl="https://adveronix.lovable.app/terms"
       />
       <Layout>
         <section className="py-20">

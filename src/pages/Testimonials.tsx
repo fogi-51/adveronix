@@ -138,7 +138,7 @@ export default function TestimonialsPage() {
         title="Client Testimonials & Reviews | Adveronix Agency"
         description="Read what 500+ clients say about Adveronix Agency. Real testimonials from businesses that achieved remarkable growth with our digital marketing services."
         keywords="Adveronix reviews, digital marketing testimonials, client success stories, marketing agency reviews"
-        canonicalUrl="https://adveronix.com/testimonials"
+        canonicalUrl="https://adveronix.lovable.app/testimonials"
       />
       <Layout>
         {/* Hero Section */}

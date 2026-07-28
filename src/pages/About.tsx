@@ -48,10 +48,10 @@ export default function About() {
   return (
     <>
       <SEOHead
-        title="About Adveronix | Digital Marketing Experts | Our Story & Team"
+        title="About Adveronix | Digital Marketing Agency Team"
         description="Meet the team behind Adveronix Agency. Learn about our mission to help businesses scale with data-driven digital marketing. 500+ clients, $10M+ managed."
         keywords="about Adveronix, digital marketing team, marketing agency story, marketing experts"
-        canonicalUrl="https://adveronix.com/about"
+        canonicalUrl="https://adveronix.lovable.app/about"
       />
       <Layout>
         {/* Hero Section */}

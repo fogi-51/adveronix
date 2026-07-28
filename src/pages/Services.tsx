@@ -159,10 +159,10 @@ export default function ServicesPage() {
   return (
     <>
       <SEOHead
-        title="Digital Marketing Services | Facebook Ads, SEO, PPC | Adveronix"
-        description="Full-service digital marketing: Facebook & Instagram Ads, Google Ads PPC, SEO, Social Media Marketing, Lead Generation. Get results that matter. Free strategy call."
+        title="Digital Marketing Services | Adveronix Agency"
+        description="Full-service digital marketing: Facebook & Instagram Ads, Google Ads PPC, SEO, Social Media Marketing, Lead Generation. Get results that matter."
         keywords="digital marketing services, Facebook Ads, Instagram Ads, Google Ads, SEO services, PPC, lead generation, social media marketing, performance marketing"
-        canonicalUrl="https://adveronix.com/services"
+        canonicalUrl="https://adveronix.lovable.app/services"
       />
       <Layout>
         {/* Hero Section */}
