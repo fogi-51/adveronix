@@ -43,7 +43,7 @@ const Careers = () => {
         title="Careers at Adveronix | Join Our Digital Marketing Team"
         description="Join Adveronix Agency and build your career in digital marketing. Explore open positions in SEO, PPC, social media marketing, and more."
         keywords="digital marketing careers, marketing jobs, SEO jobs, PPC specialist jobs, Adveronix careers"
-        canonicalUrl="https://adveronix.com/careers"
+        canonicalUrl="https://adveronix.lovable.app/careers"
       />
       <Layout>
         {/* Hero Section */}

@@ -105,7 +105,7 @@ export default function CaseStudies() {
         title="Case Studies | Client Success Stories | Adveronix Agency"
         description="See how we've helped 500+ businesses grow with digital marketing. Real results: 340% lead increase, 5x ROAS, $2.5M revenue generated. Read our case studies."
         keywords="digital marketing case studies, marketing success stories, Facebook Ads results, SEO case studies, lead generation examples"
-        canonicalUrl="https://adveronix.com/case-studies"
+        canonicalUrl="https://adveronix.lovable.app/case-studies"
       />
       <Layout>
         {/* Hero Section */}

@@ -136,7 +136,7 @@ export default function FAQ() {
         title="FAQ | Frequently Asked Questions | Adveronix Agency"
         description="Find answers to common questions about Adveronix's digital marketing services, pricing, process, and results. Everything you need to know before getting started."
         keywords="digital marketing FAQ, marketing agency questions, Facebook Ads FAQ, SEO questions, marketing pricing"
-        canonicalUrl="https://adveronix.com/faq"
+        canonicalUrl="https://adveronix.lovable.app/faq"
         structuredData={faqSchema}
       />
       <Layout>

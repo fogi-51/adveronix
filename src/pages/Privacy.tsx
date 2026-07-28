@@ -8,7 +8,7 @@ const Privacy = () => {
         title="Privacy Policy | Adveronix Agency"
         description="Learn how Adveronix Agency collects, uses, and protects your personal information. Read our comprehensive privacy policy."
         keywords="privacy policy, data protection, Adveronix privacy, personal information"
-        canonicalUrl="https://adveronix.com/privacy"
+        canonicalUrl="https://adveronix.lovable.app/privacy"
       />
       <Layout>
         <section className="py-20">
