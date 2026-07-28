@@ -55,8 +55,8 @@ export function Navbar() {
             ))}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="nav" size="sm" className="gap-1">
-                  More <ChevronDown className="h-4 w-4" />
+                <Button variant="nav" size="sm" className="gap-1" aria-label="More pages">
+                  More pages <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">

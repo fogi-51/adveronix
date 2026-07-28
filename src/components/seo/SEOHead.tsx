@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 
+const DEFAULT_OG_IMAGE =
+  "https://storage.googleapis.com/gpt-engineer-file-uploads/5GoBW90ZZOfCH10SYedLVXJaT1s1/social-images/social-1769411693847-ChatGPT_Image_Jan_25__2026__11_51_42_PM__1_-removebg-preview.png";
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -15,7 +18,7 @@ export function SEOHead({
   description,
   keywords,
   canonicalUrl,
-  ogImage = "/og-image.jpg",
+  ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   structuredData,
 }: SEOHeadProps) {
@@ -44,12 +47,14 @@ export function SEOHead({
     updateMeta("og:description", description, true);
     updateMeta("og:type", ogType, true);
     if (ogImage) updateMeta("og:image", ogImage, true);
+    if (canonicalUrl) updateMeta("og:url", canonicalUrl, true);
 
     // Twitter Card tags
     updateMeta("twitter:card", "summary_large_image");
     updateMeta("twitter:title", title);
     updateMeta("twitter:description", description);
     if (ogImage) updateMeta("twitter:image", ogImage);
+    if (canonicalUrl) updateMeta("twitter:url", canonicalUrl);
 
     // Canonical URL
     if (canonicalUrl) {
@@ -83,8 +88,8 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "Adveronix Agency",
   description: "Results-driven digital marketing agency specializing in Facebook Ads, Google Ads, SEO, and performance marketing.",
-  url: "https://adveronix.com",
-  logo: "https://adveronix.com/logo.png",
+  url: "https://adveronix.lovable.app",
+  logo: "https://adveronix.lovable.app/logo.png",
   sameAs: [
     "https://facebook.com/adveronix",
     "https://instagram.com/adveronix",
@@ -111,7 +116,7 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: "Adveronix Agency",
   description: "Digital marketing agency providing Facebook Ads, Google Ads, SEO, and lead generation services.",
-  url: "https://adveronix.com",
+  url: "https://adveronix.lovable.app",
   telephone: "+91-6290403092",
   email: "info@supabased.site",
   priceRange: "$$",
@@ -126,5 +131,19 @@ export const localBusinessSchema = {
     "@type": "AggregateRating",
     ratingValue: "4.9",
     reviewCount: "200",
+  },
+};
+
+// Blog listing schema
+export const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Adveronix Digital Marketing Blog",
+  description: "Expert insights, guides, and strategies on Facebook Ads, Google Ads, SEO, and social media marketing.",
+  url: "https://adveronix.lovable.app/blog",
+  publisher: {
+    "@type": "Organization",
+    name: "Adveronix Agency",
+    url: "https://adveronix.lovable.app",
   },
 };
