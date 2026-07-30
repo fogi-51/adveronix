@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 // Lazy load other pages to reduce initial bundle size
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
+const EcommerceSeo = lazy(() => import("./pages/EcommerceSeo"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Testimonials = lazy(() => import("./pages/Testimonials"));
