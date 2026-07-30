@@ -5,9 +5,9 @@ const Privacy = () => {
   return (
     <>
       <SEOHead
-        title="Privacy Policy | Adveronix Agency"
-        description="Learn how Adveronix Agency collects, uses, and protects your personal information. Read our comprehensive privacy policy."
-        keywords="privacy policy, data protection, Adveronix privacy, personal information"
+        title="Privacy Policy | Foggy IO Agency"
+        description="Learn how Foggy IO Agency collects, uses, and protects your personal information. Read our comprehensive privacy policy."
+        keywords="privacy policy, data protection, Foggy IO privacy, personal information"
         canonicalUrl="https://adveronix.lovable.app/privacy"
       />
       <Layout>
@@ -21,7 +21,7 @@ const Privacy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold font-display mb-4">1. Introduction</h2>
                   <p className="text-muted-foreground">
-                    Adveronix Agency ("we," "our," or "us") is committed to protecting your privacy. 
+                    Foggy IO Agency ("we," "our," or "us") is committed to protecting your privacy. 
                     This Privacy Policy explains how we collect, use, disclose, and safeguard your 
                     information when you visit our website or use our services.
                   </p>

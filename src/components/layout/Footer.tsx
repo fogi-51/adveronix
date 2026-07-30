@@ -158,7 +158,7 @@ export function Footer() {
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
                 <span className="text-accent-foreground font-bold text-xl font-display">A</span>
               </div>
-              <span className="text-xl font-bold font-display">Adveronix</span>
+              <span className="text-xl font-bold font-display">Foggy IO</span>
             </Link>
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
               Your trusted partner for digital growth. We help businesses scale 
@@ -229,7 +229,7 @@ export function Footer() {
         <div className="container-wide py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © {new Date().getFullYear()} Adveronix Agency. All rights reserved.
+              © {new Date().getFullYear()} Foggy IO Agency. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map(social => (
