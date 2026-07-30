@@ -1,7 +1,7 @@
 import { defineTool } from "@lovable.dev/mcp-js";
 
 const INFO = {
-  name: "Adveronix",
+  name: "Foggy IO",
   tagline: "Digital marketing agency helping brands grow through SEO, paid ads, web design, and content.",
   website: "https://adveronix.lovable.app",
   services: [
@@ -21,8 +21,8 @@ const INFO = {
 
 export default defineTool({
   name: "get_company_info",
-  title: "Get Adveronix company info",
-  description: "Return an overview of Adveronix: services offered, key pages, and how to get in touch.",
+  title: "Get Foggy IO company info",
+  description: "Return an overview of Foggy IO: services offered, key pages, and how to get in touch.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({

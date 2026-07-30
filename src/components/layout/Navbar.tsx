@@ -36,7 +36,7 @@ export function Navbar() {
               <span className="text-accent-foreground font-bold text-xl font-display">A</span>
             </div>
             <span className="text-xl font-bold text-primary-foreground font-display">
-              Adveronix
+              Foggy IO
             </span>
           </Link>
 

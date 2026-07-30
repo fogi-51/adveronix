@@ -18,7 +18,7 @@ const caseStudies = [
       { metric: "Cost Per Lead", value: "-65%", icon: DollarSign },
       { metric: "ROAS", value: "5.2x", icon: TrendingUp },
     ],
-    testimonial: "Adveronix transformed our digital presence completely. Their strategic approach to Facebook ads is unmatched.",
+    testimonial: "Foggy IO transformed our digital presence completely. Their strategic approach to Facebook ads is unmatched.",
     author: "Sarah Johnson, CEO",
   },
   {
@@ -33,7 +33,7 @@ const caseStudies = [
       { metric: "Organic Traffic", value: "+280%", icon: TrendingUp },
       { metric: "Conversion Rate", value: "+45%", icon: Target },
     ],
-    testimonial: "The ROI we've seen from working with Adveronix has been incredible. They truly understand performance marketing.",
+    testimonial: "The ROI we've seen from working with Foggy IO has been incredible. They truly understand performance marketing.",
     author: "Michael Chen, Founder",
   },
   {
@@ -48,7 +48,7 @@ const caseStudies = [
       { metric: "Lead Quality Score", value: "+85%", icon: Target },
       { metric: "Sales Cycle", value: "-30%", icon: DollarSign },
     ],
-    testimonial: "What sets Adveronix apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing.",
+    testimonial: "What sets Foggy IO apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing.",
     author: "Emily Rodriguez, Marketing Director",
   },
   {
@@ -63,7 +63,7 @@ const caseStudies = [
       { metric: "Foot Traffic", value: "+55%", icon: TrendingUp },
       { metric: "Online Orders", value: "+180%", icon: DollarSign },
     ],
-    testimonial: "Our social presence went from non-existent to the talk of the town. Adveronix understands local marketing.",
+    testimonial: "Our social presence went from non-existent to the talk of the town. Foggy IO understands local marketing.",
     author: "David Park, Owner",
   },
   {
@@ -93,7 +93,7 @@ const caseStudies = [
       { metric: "Cost Per Case", value: "-50%", icon: DollarSign },
       { metric: "First Page Rankings", value: "45", icon: Target },
     ],
-    testimonial: "Adveronix helped us compete with firms 10x our size. The results speak for themselves.",
+    testimonial: "Foggy IO helped us compete with firms 10x our size. The results speak for themselves.",
     author: "Robert Kim, Managing Partner",
   },
 ];
@@ -102,7 +102,7 @@ export default function CaseStudies() {
   return (
     <>
       <SEOHead
-        title="Case Studies | Client Success Stories | Adveronix Agency"
+        title="Case Studies | Client Success Stories | Foggy IO Agency"
         description="See how we've helped 500+ businesses grow with digital marketing. Real results: 340% lead increase, 5x ROAS, $2.5M revenue generated. Read our case studies."
         keywords="digital marketing case studies, marketing success stories, Facebook Ads results, SEO case studies, lead generation examples"
         canonicalUrl="https://adveronix.lovable.app/case-studies"

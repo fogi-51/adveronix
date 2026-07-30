@@ -159,7 +159,7 @@ export default function ServicesPage() {
   return (
     <>
       <SEOHead
-        title="Digital Marketing Services | Adveronix Agency"
+        title="Digital Marketing Services | Foggy IO Agency"
         description="Full-service digital marketing: Facebook & Instagram Ads, Google Ads PPC, SEO, Social Media Marketing, Lead Generation. Get results that matter."
         keywords="digital marketing services, Facebook Ads, Instagram Ads, Google Ads, SEO services, PPC, lead generation, social media marketing, performance marketing"
         canonicalUrl="https://adveronix.lovable.app/services"
