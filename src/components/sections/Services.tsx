@@ -125,14 +125,26 @@ export function Services() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-4">
           <Link to="/services">
             <Button variant="accent" size="lg">
               View All Services
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
+          <p className="text-muted-foreground">
+            Running an online store?{" "}
+            <Link
+              to="/services/ecommerce-seo"
+              className="text-primary hover:underline"
+              aria-label="Read our ecommerce SEO strategy guide"
+            >
+              Read our ecommerce SEO strategy guide
+            </Link>
+            .
+          </p>
         </div>
+
       </div>
     </section>
   );
