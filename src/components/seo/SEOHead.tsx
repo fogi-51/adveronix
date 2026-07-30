@@ -100,7 +100,7 @@ export const organizationSchema = {
     "@type": "ContactPoint",
     telephone: "+91-6290403092",
     contactType: "customer service",
-    email: "info@supabased.site",
+    email: "info@fogi.co.in",
   },
   address: {
     "@type": "PostalAddress",
@@ -118,7 +118,7 @@ export const localBusinessSchema = {
   description: "Digital marketing agency providing Facebook Ads, Google Ads, SEO, and lead generation services.",
   url: "https://adveronix.lovable.app",
   telephone: "+91-6290403092",
-  email: "info@supabased.site",
+  email: "info@fogi.co.in",
   priceRange: "$$",
   openingHours: "Mo-Fr 09:00-18:00",
   address: {

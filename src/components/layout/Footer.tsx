@@ -165,9 +165,9 @@ export function Footer() {
               with data-driven marketing strategies that deliver measurable results.
             </p>
             <div className="space-y-3">
-              <a href="mailto:info@supabased.site" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors">
+              <a href="mailto:info@fogi.co.in" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors">
                 <Mail className="h-5 w-5" />
-                info@supabased.site
+                info@fogi.co.in
               </a>
               <a href="tel:+916290403092" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors">
                 <Phone className="h-5 w-5" />

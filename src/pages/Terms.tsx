@@ -118,7 +118,7 @@ const Terms = () => {
                   <h2 className="text-2xl font-semibold font-display mb-4">11. Contact Information</h2>
                   <p className="text-muted-foreground">
                     For questions about these Terms of Service, please contact us at:<br />
-                    Email: <a href="mailto:info@supabased.site" className="text-primary hover:underline">info@supabased.site</a><br />
+                    Email: <a href="mailto:info@fogi.co.in" className="text-primary hover:underline">info@fogi.co.in</a><br />
                     Phone: <a href="tel:+916290403092" className="text-primary hover:underline">+91 6290403092</a>
                   </p>
                 </section>
