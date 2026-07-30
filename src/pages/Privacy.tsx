@@ -102,7 +102,7 @@ const Privacy = () => {
                   <h2 className="text-2xl font-semibold font-display mb-4">9. Contact Us</h2>
                   <p className="text-muted-foreground">
                     If you have any questions about this Privacy Policy, please contact us at:<br />
-                    Email: <a href="mailto:info@supabased.site" className="text-primary hover:underline">info@supabased.site</a><br />
+                    Email: <a href="mailto:info@fogi.co.in" className="text-primary hover:underline">info@fogi.co.in</a><br />
                     Phone: <a href="tel:+916290403092" className="text-primary hover:underline">+91 6290403092</a>
                   </p>
                 </section>

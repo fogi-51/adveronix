@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    content: "info@supabased.site",
+    content: "info@fogi.co.in",
     subtext: "We'll respond within 24 hours",
   },
   {

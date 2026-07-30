@@ -204,11 +204,11 @@ const handler = async (req: Request): Promise<Response> => {
       </html>
     `;
 
-    console.log("Sending email to info@supabased.site...");
+    console.log("Sending email to info@fogi.co.in...");
     
     const emailResponse = await resend.emails.send({
       from: "Adveronix Contact <onboarding@resend.dev>",
-      to: ["info@supabased.site"],
+      to: ["info@fogi.co.in"],
       reply_to: formData.email,
       subject: `New Contact: ${safeFirstName} ${safeLastName} - ${safeService}`,
       html: emailHtml,
