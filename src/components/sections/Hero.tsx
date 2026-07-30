@@ -14,8 +14,10 @@ export function Hero() {
       {/* Background Image - Using img tag for LCP optimization */}
       <img 
         src="/images/hero-bg.jpg"
-        srcSet="/images/hero-bg.jpg 1704w"
+        srcSet="/images/hero-bg.jpg 1920w"
         sizes="100vw"
+        width={1920}
+        height={1080}
         alt=""
         fetchPriority="high"
         decoding="async"
