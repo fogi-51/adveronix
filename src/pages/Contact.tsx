@@ -207,18 +207,51 @@ export default function Contact() {
                 </p>
 
                 {formSubmitted ? (
-                  <div className="bg-success/10 border border-success/30 rounded-2xl p-8 text-center">
-                    <CheckCircle2 className="h-16 w-16 text-success mx-auto mb-4" />
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={
+                      status === "sent"
+                        ? "bg-success/10 border border-success/30 rounded-2xl p-8 text-center"
+                        : "bg-accent/10 border border-accent/30 rounded-2xl p-8 text-center"
+                    }
+                  >
+                    {status === "sent" ? (
+                      <CheckCircle2 className="h-16 w-16 text-success mx-auto mb-4" />
+                    ) : (
+                      <MailWarning className="h-16 w-16 text-accent mx-auto mb-4" />
+                    )}
                     <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Thank You!
+                      {status === "sent" ? "Thank You!" : "Message Received"}
                     </h3>
                     <p className="text-muted-foreground">
-                      We've received your message and will get back to you within 
-                      24 hours. Check your email for confirmation.
+                      {status === "sent" ? (
+                        <>
+                          We've received your message and will get back to you within
+                          24 hours. Check your email for confirmation.
+                        </>
+                      ) : (
+                        <>
+                          Your details are safely saved and our team will get back to you
+                          within 24 hours. Our confirmation email is delayed — if it's
+                          urgent, reach us at info@fogi.co.in.
+                        </>
+                      )}
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {status === "error" && (
+                      <div
+                        role="alert"
+                        aria-live="assertive"
+                        className="flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/10 p-4"
+                      >
+                        <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                        <p className="text-sm text-foreground">{errorMessage}</p>
+                      </div>
+                    )}
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>
