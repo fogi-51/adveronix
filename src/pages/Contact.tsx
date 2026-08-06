@@ -20,6 +20,9 @@ import {
   ArrowRight,
   Calendar,
   Loader2,
+  AlertCircle,
+  MailWarning,
+
 } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -72,8 +75,11 @@ const budgets = [
 ];
 
 export default function Contact() {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  type SubmitStatus = "idle" | "sending" | "sent" | "sent_email_pending" | "error";
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const isSubmitting = status === "sending";
+  const formSubmitted = status === "sent" || status === "sent_email_pending";
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -92,7 +98,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setStatus("sending");
+    setErrorMessage(null);
 
     try {
       // Save to database
@@ -107,7 +114,11 @@ export default function Contact() {
 
       if (dbError) {
         console.error("Error saving to database:", dbError);
-        toast.error("Failed to save message. Please try again.");
+        setStatus("error");
+        setErrorMessage(
+          "We couldn't save your message. Please try again, or email us directly at info@fogi.co.in.",
+        );
+        toast.error("Failed to send message. Please try again.");
         return;
       }
 
@@ -119,19 +130,25 @@ export default function Contact() {
       if (emailError) {
         console.error("Error sending email notification:", emailError);
         // Don't fail the submission - the data is already saved
+        setStatus("sent_email_pending");
+        toast.success("Message received!");
+        return;
       }
 
-      setFormSubmitted(true);
+      setStatus("sent");
       toast.success("Message sent successfully!");
     } catch (error) {
       console.error("Error:", error);
+      setStatus("error");
+      setErrorMessage(
+        "Something went wrong while sending your message. Please try again, or email us directly at info@fogi.co.in.",
+      );
       toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   return (
+
     <>
       <SEOHead
         title="Contact Us | Book a Free Strategy Call | Foggy IO Agency"
@@ -190,18 +207,51 @@ export default function Contact() {
                 </p>
 
                 {formSubmitted ? (
-                  <div className="bg-success/10 border border-success/30 rounded-2xl p-8 text-center">
-                    <CheckCircle2 className="h-16 w-16 text-success mx-auto mb-4" />
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={
+                      status === "sent"
+                        ? "bg-success/10 border border-success/30 rounded-2xl p-8 text-center"
+                        : "bg-accent/10 border border-accent/30 rounded-2xl p-8 text-center"
+                    }
+                  >
+                    {status === "sent" ? (
+                      <CheckCircle2 className="h-16 w-16 text-success mx-auto mb-4" />
+                    ) : (
+                      <MailWarning className="h-16 w-16 text-accent mx-auto mb-4" />
+                    )}
                     <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Thank You!
+                      {status === "sent" ? "Thank You!" : "Message Received"}
                     </h3>
                     <p className="text-muted-foreground">
-                      We've received your message and will get back to you within 
-                      24 hours. Check your email for confirmation.
+                      {status === "sent" ? (
+                        <>
+                          We've received your message and will get back to you within
+                          24 hours. Check your email for confirmation.
+                        </>
+                      ) : (
+                        <>
+                          Your details are safely saved and our team will get back to you
+                          within 24 hours. Our confirmation email is delayed — if it's
+                          urgent, reach us at info@fogi.co.in.
+                        </>
+                      )}
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {status === "error" && (
+                      <div
+                        role="alert"
+                        aria-live="assertive"
+                        className="flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/10 p-4"
+                      >
+                        <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                        <p className="text-sm text-foreground">{errorMessage}</p>
+                      </div>
+                    )}
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>
@@ -338,11 +388,17 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Book My Free Strategy Call
+                          {status === "error" ? "Try Again" : "Book My Free Strategy Call"}
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </>
                       )}
                     </Button>
+
+                    <p aria-live="polite" className="sr-only">
+                      {isSubmitting ? "Sending your message" : ""}
+                    </p>
+
+
 
                     <p className="text-sm text-muted-foreground text-center">
                       By submitting this form, you agree to our privacy policy. 
