@@ -75,8 +75,11 @@ const budgets = [
 ];
 
 export default function Contact() {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  type SubmitStatus = "idle" | "sending" | "sent" | "sent_email_pending" | "error";
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const isSubmitting = status === "sending";
+  const formSubmitted = status === "sent" || status === "sent_email_pending";
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -95,7 +98,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setStatus("sending");
+    setErrorMessage(null);
 
     try {
       // Save to database
@@ -110,7 +114,11 @@ export default function Contact() {
 
       if (dbError) {
         console.error("Error saving to database:", dbError);
-        toast.error("Failed to save message. Please try again.");
+        setStatus("error");
+        setErrorMessage(
+          "We couldn't save your message. Please try again, or email us directly at info@fogi.co.in.",
+        );
+        toast.error("Failed to send message. Please try again.");
         return;
       }
 
@@ -122,19 +130,25 @@ export default function Contact() {
       if (emailError) {
         console.error("Error sending email notification:", emailError);
         // Don't fail the submission - the data is already saved
+        setStatus("sent_email_pending");
+        toast.success("Message received!");
+        return;
       }
 
-      setFormSubmitted(true);
+      setStatus("sent");
       toast.success("Message sent successfully!");
     } catch (error) {
       console.error("Error:", error);
+      setStatus("error");
+      setErrorMessage(
+        "Something went wrong while sending your message. Please try again, or email us directly at info@fogi.co.in.",
+      );
       toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   return (
+
     <>
       <SEOHead
         title="Contact Us | Book a Free Strategy Call | Foggy IO Agency"
