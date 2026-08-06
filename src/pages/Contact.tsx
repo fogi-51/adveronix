@@ -388,11 +388,17 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Book My Free Strategy Call
+                          {status === "error" ? "Try Again" : "Book My Free Strategy Call"}
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </>
                       )}
                     </Button>
+
+                    <p aria-live="polite" className="sr-only">
+                      {isSubmitting ? "Sending your message" : ""}
+                    </p>
+
+
 
                     <p className="text-sm text-muted-foreground text-center">
                       By submitting this form, you agree to our privacy policy. 
