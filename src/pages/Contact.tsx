@@ -20,6 +20,9 @@ import {
   ArrowRight,
   Calendar,
   Loader2,
+  AlertCircle,
+  MailWarning,
+
 } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
