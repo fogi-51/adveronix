@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logoAsset from "@/assets/fgi-logo.png.asset.json";
+import logoSrc from "@/assets/fgi-logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
