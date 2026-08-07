@@ -34,8 +34,8 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={logoAsset.url}
-              alt="Foggy IO logo"
+              src={logoSrc}
+              alt="FGI logo mark"
               width={40}
               height={40}
               className="w-10 h-10 object-contain"
