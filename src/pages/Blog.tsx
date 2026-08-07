@@ -35,7 +35,7 @@ const blogPosts = [
     excerpt:
       "No massive budget? No problem. This guide shows small businesses how to compete in organic search with strategic, high-impact tactics.",
     category: "SEO",
-    author: "Emily Zhang",
+    author: "Vishal Singh",
     date: "January 10, 2024",
     readTime: "10 min read",
   },
