@@ -75,7 +75,7 @@ const blogPosts = [
     excerpt:
       "Stop guessing which channels are working. Learn how to build an attribution model that gives you real insights into marketing performance.",
     category: "Analytics",
-    author: "Michael Ross",
+    author: "Sara Ross",
     date: "December 28, 2023",
     readTime: "11 min read",
   },
