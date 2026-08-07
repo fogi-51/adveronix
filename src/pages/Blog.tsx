@@ -45,7 +45,7 @@ const blogPosts = [
     excerpt:
       "Understand the psychological principles that make visitors take action. Includes design patterns and copy frameworks that work.",
     category: "Conversion",
-    author: "Alex Thompson",
+    author: "Mirjahan Ali",
     date: "January 8, 2024",
     readTime: "7 min read",
   },
