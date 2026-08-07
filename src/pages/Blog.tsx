@@ -12,7 +12,7 @@ const featuredPost = {
   excerpt:
     "Discover the latest Facebook advertising strategies that are driving real results for businesses. From audience targeting to creative best practices, this guide covers everything you need to know.",
   category: "Facebook Ads",
-  author: "Sarah Chen",
+  author: "Manish Singh",
   date: "January 15, 2024",
   readTime: "12 min read",
   image: null,
