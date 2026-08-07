@@ -32,9 +32,14 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-xl font-display">A</span>
-            </div>
+            <img
+              src={logoAsset.url}
+              alt="Foggy IO logo"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain"
+            />
+          </Link>
             <span className="text-xl font-bold text-primary-foreground font-display">
               Foggy IO
             </span>
