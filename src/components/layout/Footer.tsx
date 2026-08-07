@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logoSrc from "@/assets/fgi-logo.png";
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
