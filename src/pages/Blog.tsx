@@ -25,7 +25,7 @@ const blogPosts = [
     excerpt:
       "Learn the proven methods for scaling your PPC campaigns while maintaining profitability. Includes real examples and step-by-step processes.",
     category: "Google Ads",
-    author: "Michael Ross",
+    author: "Sara Ross",
     date: "January 12, 2024",
     readTime: "8 min read",
   },
