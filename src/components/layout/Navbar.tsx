@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logoAsset from "@/assets/foggy-io-logo.png.asset.json";
+import logoSrc from "@/assets/fgi-logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -34,8 +34,8 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={logoAsset.url}
-              alt="Foggy IO logo"
+              src={logoSrc}
+              alt="FGI logo mark"
               width={40}
               height={40}
               className="w-10 h-10 object-contain"
