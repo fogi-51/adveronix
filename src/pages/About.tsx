@@ -38,10 +38,10 @@ const milestones = [
 ];
 
 const team = [
-  { name: "Alex Thompson", role: "Founder & CEO", specialty: "Growth Strategy" },
-  { name: "Sarah Chen", role: "Head of Performance", specialty: "Paid Media" },
-  { name: "Michael Ross", role: "SEO Director", specialty: "Organic Growth" },
-  { name: "Emily Zhang", role: "Creative Lead", specialty: "Brand & Content" },
+  { name: "Mirjahan Ali", role: "Founder & CEO", specialty: "Growth Strategy" },
+  { name: "Manish Singh", role: "Head of Performance", specialty: "Paid Media" },
+  { name: "Sara Ross", role: "SEO Director", specialty: "Organic Growth" },
+  { name: "Vishal Singh", role: "Creative Lead", specialty: "Brand & Content" },
 ];
 
 export default function About() {

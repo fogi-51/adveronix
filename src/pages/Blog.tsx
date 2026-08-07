@@ -12,7 +12,7 @@ const featuredPost = {
   excerpt:
     "Discover the latest Facebook advertising strategies that are driving real results for businesses. From audience targeting to creative best practices, this guide covers everything you need to know.",
   category: "Facebook Ads",
-  author: "Sarah Chen",
+  author: "Manish Singh",
   date: "January 15, 2024",
   readTime: "12 min read",
   image: null,
@@ -25,7 +25,7 @@ const blogPosts = [
     excerpt:
       "Learn the proven methods for scaling your PPC campaigns while maintaining profitability. Includes real examples and step-by-step processes.",
     category: "Google Ads",
-    author: "Michael Ross",
+    author: "Sara Ross",
     date: "January 12, 2024",
     readTime: "8 min read",
   },
@@ -35,7 +35,7 @@ const blogPosts = [
     excerpt:
       "No massive budget? No problem. This guide shows small businesses how to compete in organic search with strategic, high-impact tactics.",
     category: "SEO",
-    author: "Emily Zhang",
+    author: "Vishal Singh",
     date: "January 10, 2024",
     readTime: "10 min read",
   },
@@ -45,7 +45,7 @@ const blogPosts = [
     excerpt:
       "Understand the psychological principles that make visitors take action. Includes design patterns and copy frameworks that work.",
     category: "Conversion",
-    author: "Alex Thompson",
+    author: "Mirjahan Ali",
     date: "January 8, 2024",
     readTime: "7 min read",
   },
@@ -55,7 +55,7 @@ const blogPosts = [
     excerpt:
       "Master the art of short-form video content on Instagram. Tips for planning, creating, and optimizing Reels for maximum reach.",
     category: "Social Media",
-    author: "Sarah Chen",
+    author: "Manish Singh",
     date: "January 5, 2024",
     readTime: "6 min read",
   },
@@ -75,7 +75,7 @@ const blogPosts = [
     excerpt:
       "Stop guessing which channels are working. Learn how to build an attribution model that gives you real insights into marketing performance.",
     category: "Analytics",
-    author: "Michael Ross",
+    author: "Sara Ross",
     date: "December 28, 2023",
     readTime: "11 min read",
   },
