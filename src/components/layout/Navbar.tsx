@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logoAsset from "@/assets/foggy-io-logo.png.asset.json";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -39,7 +40,6 @@ export function Navbar() {
               height={40}
               className="w-10 h-10 object-contain"
             />
-          </Link>
             <span className="text-xl font-bold text-primary-foreground font-display">
               Foggy IO
             </span>
