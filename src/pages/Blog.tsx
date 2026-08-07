@@ -55,7 +55,7 @@ const blogPosts = [
     excerpt:
       "Master the art of short-form video content on Instagram. Tips for planning, creating, and optimizing Reels for maximum reach.",
     category: "Social Media",
-    author: "Sarah Chen",
+    author: "Manish Singh",
     date: "January 5, 2024",
     readTime: "6 min read",
   },
