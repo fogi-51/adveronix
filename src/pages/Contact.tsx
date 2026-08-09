@@ -394,6 +394,26 @@ export default function Contact() {
                       />
                     </div>
 
+                    {/* Honeypot — hidden from real users */}
+                    <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+                      <label htmlFor="companyWebsiteConfirm">Do not fill this field</label>
+                      <input
+                        id="companyWebsiteConfirm"
+                        name="companyWebsiteConfirm"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
+                    <TurnstileWidget
+                      onVerify={setCaptchaToken}
+                      onExpire={() => setCaptchaToken(null)}
+                    />
+
+
                     <Button 
                       type="submit" 
                       variant="accent" 
