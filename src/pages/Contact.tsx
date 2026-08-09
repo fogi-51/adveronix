@@ -27,6 +27,9 @@ import {
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { isTurnstileEnabled } from "@/config/turnstile";
+
 
 const contactInfo = [
   {
@@ -80,6 +83,8 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const isSubmitting = status === "sending";
   const formSubmitted = status === "sent" || status === "sent_email_pending";
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -98,10 +103,24 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: silently drop bot submissions.
+    if (honeypot) {
+      setStatus("sent");
+      return;
+    }
+
+    if (isTurnstileEnabled && !captchaToken) {
+      setStatus("error");
+      setErrorMessage("Please complete the spam-protection challenge below before submitting.");
+      return;
+    }
+
     setStatus("sending");
     setErrorMessage(null);
 
     try {
+
       // Save to database
       const { error: dbError } = await supabase.from("contacts").insert({
         name: `${formData.firstName} ${formData.lastName}`.trim(),
