@@ -53,6 +53,10 @@ interface ContactFormData {
   service: string;
   budget?: string;
   message: string;
+  captchaToken?: string;
+  /** Honeypot field — must stay empty; only bots fill it in. */
+  companyWebsiteConfirm?: string;
+
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -79,6 +83,47 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const formData: ContactFormData = await req.json();
+
+    // Honeypot: real users never see or fill this field.
+    if (formData.companyWebsiteConfirm) {
+      console.warn(`Honeypot triggered for IP: ${clientIp}`);
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    // CAPTCHA verification (active once TURNSTILE_SECRET_KEY is configured).
+    const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY");
+    if (turnstileSecret) {
+      if (!formData.captchaToken) {
+        return new Response(
+          JSON.stringify({ error: "Please complete the spam-protection challenge." }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } },
+        );
+      }
+      const verifyRes = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            secret: turnstileSecret,
+            response: formData.captchaToken,
+            remoteip: clientIp !== "unknown" ? clientIp : undefined,
+          }),
+        },
+      );
+      const verifyBody = await verifyRes.json().catch(() => null);
+      if (!verifyRes.ok || !verifyBody?.success) {
+        console.warn("Turnstile verification failed:", verifyBody);
+        return new Response(
+          JSON.stringify({ error: "Spam-protection check failed. Please try again." }),
+          { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } },
+        );
+      }
+    }
+
     console.log("Received contact form submission from:", clientIp);
 
     // Validate required fields

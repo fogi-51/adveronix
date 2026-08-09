@@ -27,6 +27,9 @@ import {
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { isTurnstileEnabled } from "@/config/turnstile";
+
 
 const contactInfo = [
   {
@@ -80,6 +83,8 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const isSubmitting = status === "sending";
   const formSubmitted = status === "sent" || status === "sent_email_pending";
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -98,10 +103,24 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: silently drop bot submissions.
+    if (honeypot) {
+      setStatus("sent");
+      return;
+    }
+
+    if (isTurnstileEnabled && !captchaToken) {
+      setStatus("error");
+      setErrorMessage("Please complete the spam-protection challenge below before submitting.");
+      return;
+    }
+
     setStatus("sending");
     setErrorMessage(null);
 
     try {
+
       // Save to database
       const { error: dbError } = await supabase.from("contacts").insert({
         name: `${formData.firstName} ${formData.lastName}`.trim(),
@@ -124,8 +143,9 @@ export default function Contact() {
 
       // Send email notification
       const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
+        body: { ...formData, captchaToken },
       });
+
 
       if (emailError) {
         console.error("Error sending email notification:", emailError);
@@ -373,6 +393,26 @@ export default function Contact() {
                         onChange={(e) => handleInputChange("message", e.target.value)}
                       />
                     </div>
+
+                    {/* Honeypot — hidden from real users */}
+                    <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+                      <label htmlFor="companyWebsiteConfirm">Do not fill this field</label>
+                      <input
+                        id="companyWebsiteConfirm"
+                        name="companyWebsiteConfirm"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
+                    <TurnstileWidget
+                      onVerify={setCaptchaToken}
+                      onExpire={() => setCaptchaToken(null)}
+                    />
+
 
                     <Button 
                       type="submit" 
