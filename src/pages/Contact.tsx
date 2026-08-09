@@ -143,8 +143,9 @@ export default function Contact() {
 
       // Send email notification
       const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
+        body: { ...formData, captchaToken },
       });
+
 
       if (emailError) {
         console.error("Error sending email notification:", emailError);
