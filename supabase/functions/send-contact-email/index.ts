@@ -204,11 +204,13 @@ const handler = async (req: Request): Promise<Response> => {
       </html>
     `;
 
-    console.log("Sending email to info@fogi.co.in...");
-    
+    // Until fogi.co.in is verified in Resend, notifications go to the Resend account owner.
+    const NOTIFY_TO = "info.ai.fogi@gmail.com";
+    console.log(`Sending email to ${NOTIFY_TO}...`);
+
     const emailResponse = await resend.emails.send({
       from: "Foggy IO Contact <onboarding@resend.dev>",
-      to: ["info@fogi.co.in"],
+      to: [NOTIFY_TO],
       reply_to: formData.email,
       subject: `New Contact: ${safeFirstName} ${safeLastName} - ${safeService}`,
       html: emailHtml,
