@@ -5,7 +5,7 @@ export default defineTool({
   name: "submit_contact_inquiry",
   title: "Submit contact inquiry",
   description:
-    "Submit a contact / strategy call inquiry to the Foggy IO team. Use when a user wants to book a free strategy call or reach out about a project.",
+    "Submit a contact / strategy call inquiry to the Fogee IO team. Use when a user wants to book a free strategy call or reach out about a project.",
   inputSchema: {
     firstName: z.string().min(1).describe("Contact first name."),
     lastName: z.string().min(1).describe("Contact last name."),

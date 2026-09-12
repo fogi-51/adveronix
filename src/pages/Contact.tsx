@@ -171,9 +171,9 @@ export default function Contact() {
 
     <>
       <SEOHead
-        title="Contact Us | Book a Free Strategy Call | Foggy IO Agency"
-        description="Ready to grow your business with digital marketing? Contact Foggy IO for a free strategy call. Let's discuss how we can help you achieve your marketing goals."
-        keywords="contact Foggy IO, digital marketing consultation, free marketing audit, marketing strategy call"
+        title="Contact Us | Book a Free Strategy Call | Fogee IO Agency"
+        description="Ready to grow your business with digital marketing? Contact Fogee IO for a free strategy call. Let's discuss how we can help you achieve your marketing goals."
+        keywords="contact Fogee IO, digital marketing consultation, free marketing audit, marketing strategy call"
         canonicalUrl="https://adveronix.lovable.app/contact"
         structuredData={localBusinessSchema}
       />

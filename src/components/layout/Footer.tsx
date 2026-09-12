@@ -163,7 +163,7 @@ export function Footer() {
                 height={40}
                 className="w-10 h-10 object-contain"
               />
-              <span className="text-xl font-bold font-display">Foggy IO</span>
+              <span className="text-xl font-bold font-display">Fogee IO</span>
             </Link>
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
               Your trusted partner for digital growth. We help businesses scale 
@@ -234,7 +234,7 @@ export function Footer() {
         <div className="container-wide py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © {new Date().getFullYear()} Foggy IO Agency. All rights reserved.
+              © {new Date().getFullYear()} Fogee IO Agency. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map(social => (

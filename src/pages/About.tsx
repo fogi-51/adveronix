@@ -48,9 +48,9 @@ export default function About() {
   return (
     <>
       <SEOHead
-        title="About Foggy IO | Digital Marketing Agency Team"
-        description="Meet the team behind Foggy IO Agency. Learn about our mission to help businesses scale with data-driven digital marketing. 500+ clients, $10M+ managed."
-        keywords="about Foggy IO, digital marketing team, marketing agency story, marketing experts"
+        title="About Fogee IO | Digital Marketing Agency Team"
+        description="Meet the team behind Fogee IO Agency. Learn about our mission to help businesses scale with data-driven digital marketing. 500+ clients, $10M+ managed."
+        keywords="about Fogee IO, digital marketing team, marketing agency story, marketing experts"
         canonicalUrl="https://adveronix.lovable.app/about"
       />
       <Layout>
@@ -67,7 +67,7 @@ export default function About() {
                 <span className="text-gradient">Fuel Business Growth</span>
               </h1>
               <p className="text-xl text-primary-foreground/80 mb-8">
-                Foggy IO was founded with a simple belief: every business deserves 
+                Fogee IO was founded with a simple belief: every business deserves 
                 access to world-class digital marketing. We combine data, creativity, 
                 and strategy to deliver results that matter.
               </p>
@@ -117,7 +117,7 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Foggy IO started in 2019 with a small team and a big vision: 
+                    Fogee IO started in 2019 with a small team and a big vision: 
                     to make performance marketing accessible to businesses of all sizes.
                   </p>
                   <p>

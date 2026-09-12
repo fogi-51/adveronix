@@ -96,8 +96,8 @@ export default function Blog() {
   return (
     <>
       <SEOHead
-        title="Digital Marketing Blog | Insights & Strategies | Foggy IO"
-        description="Expert digital marketing insights, guides, and strategies. Learn about Facebook Ads, Google Ads, SEO, social media marketing, and more from the Foggy IO team."
+        title="Digital Marketing Blog | Insights & Strategies | Fogee IO"
+        description="Expert digital marketing insights, guides, and strategies. Learn about Facebook Ads, Google Ads, SEO, social media marketing, and more from the Fogee IO team."
         keywords="digital marketing blog, marketing tips, Facebook Ads guide, SEO tips, social media strategies, PPC insights"
         canonicalUrl="https://adveronix.lovable.app/blog"
         structuredData={blogSchema}

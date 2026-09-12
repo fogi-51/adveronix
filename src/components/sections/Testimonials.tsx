@@ -8,7 +8,7 @@ const testimonials = [
     role: "CEO, TechStart Inc.",
     image: null,
     content:
-      "Foggy IO transformed our digital presence completely. Our lead generation increased by 340% in just 3 months. Their strategic approach to Facebook ads is unmatched.",
+      "Fogee IO transformed our digital presence completely. Our lead generation increased by 340% in just 3 months. Their strategic approach to Facebook ads is unmatched.",
     rating: 5,
     result: "340% increase in leads",
   },
@@ -17,7 +17,7 @@ const testimonials = [
     role: "Founder, GrowthBox",
     image: null,
     content:
-      "The ROI we've seen from working with Foggy IO has been incredible. They truly understand performance marketing and deliver results that matter to our bottom line.",
+      "The ROI we've seen from working with Fogee IO has been incredible. They truly understand performance marketing and deliver results that matter to our bottom line.",
     rating: 5,
     result: "$2.5M revenue generated",
   },
@@ -26,7 +26,7 @@ const testimonials = [
     role: "Marketing Director, ScaleUp Co.",
     image: null,
     content:
-      "What sets Foggy IO apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing and where our money is going.",
+      "What sets Fogee IO apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing and where our money is going.",
     rating: 5,
     result: "5x ROAS achieved",
   },
@@ -47,7 +47,7 @@ export function Testimonials() {
           </h2>
           <p className="text-lg text-muted-foreground">
             Don't just take our word for it. Here's what our clients have to say 
-            about working with Foggy IO Agency.
+            about working with Fogee IO Agency.
           </p>
         </div>
 

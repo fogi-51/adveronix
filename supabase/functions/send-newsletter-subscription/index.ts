@@ -132,7 +132,7 @@ const handler = async (req: Request): Promise<Response> => {
         <div class="container">
           <div class="header">
             <h1>📧 New Newsletter Subscription</h1>
-            <p style="margin: 10px 0 0 0; opacity: 0.9;">Foggy IO Agency Website</p>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Fogee IO Agency Website</p>
           </div>
           <div class="content">
             <p>A new user has subscribed to your newsletter!</p>
@@ -144,7 +144,7 @@ const handler = async (req: Request): Promise<Response> => {
             </p>
           </div>
           <div class="footer">
-            <p>This notification was sent from your Foggy IO Agency website.</p>
+            <p>This notification was sent from your Fogee IO Agency website.</p>
             <p>Timestamp: ${new Date().toISOString()}</p>
           </div>
         </div>
@@ -155,7 +155,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending subscription notification to fogi.helpdesk@gmail.com...");
     
     const emailResponse = await resend.emails.send({
-      from: "Foggy IO Newsletter <onboarding@resend.dev>",
+      from: "Fogee IO Newsletter <onboarding@resend.dev>",
       to: ["fogi.helpdesk@gmail.com"],
       subject: `New Newsletter Subscriber: ${safeEmail}`,
       html: emailHtml,

@@ -86,7 +86,7 @@ export function SEOHead({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Foggy IO Agency",
+  name: "Fogee IO Agency",
   description: "Results-driven digital marketing agency specializing in Facebook Ads, Google Ads, SEO, and performance marketing.",
   url: "https://adveronix.lovable.app",
   logo: "https://adveronix.lovable.app/logo.png",
@@ -114,7 +114,7 @@ export const organizationSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Foggy IO Agency",
+  name: "Fogee IO Agency",
   description: "Digital marketing agency providing Facebook Ads, Google Ads, SEO, and lead generation services.",
   url: "https://adveronix.lovable.app",
   telephone: "+91-6290403092",
@@ -138,12 +138,12 @@ export const localBusinessSchema = {
 export const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  name: "Foggy IO Digital Marketing Blog",
+  name: "Fogee IO Digital Marketing Blog",
   description: "Expert insights, guides, and strategies on Facebook Ads, Google Ads, SEO, and social media marketing.",
   url: "https://adveronix.lovable.app/blog",
   publisher: {
     "@type": "Organization",
-    name: "Foggy IO Agency",
+    name: "Fogee IO Agency",
     url: "https://adveronix.lovable.app",
   },
 };

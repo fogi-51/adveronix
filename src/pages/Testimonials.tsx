@@ -12,7 +12,7 @@ const testimonials = [
     role: "CEO",
     company: "TechStart Inc.",
     content:
-      "Foggy IO transformed our digital presence completely. Our lead generation increased by 340% in just 3 months. Their strategic approach to Facebook ads is unmatched. They truly understand what it takes to scale a tech startup.",
+      "Fogee IO transformed our digital presence completely. Our lead generation increased by 340% in just 3 months. Their strategic approach to Facebook ads is unmatched. They truly understand what it takes to scale a tech startup.",
     rating: 5,
     result: "340% increase in leads",
     service: "Facebook Ads",
@@ -23,7 +23,7 @@ const testimonials = [
     role: "Founder",
     company: "GrowthBox",
     content:
-      "The ROI we've seen from working with Foggy IO has been incredible. They truly understand performance marketing and deliver results that matter to our bottom line. We've generated over $2.5M in revenue through their campaigns.",
+      "The ROI we've seen from working with Fogee IO has been incredible. They truly understand performance marketing and deliver results that matter to our bottom line. We've generated over $2.5M in revenue through their campaigns.",
     rating: 5,
     result: "$2.5M revenue generated",
     service: "Google Ads + SEO",
@@ -34,7 +34,7 @@ const testimonials = [
     role: "Marketing Director",
     company: "ScaleUp Co.",
     content:
-      "What sets Foggy IO apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing and where our money is going. The weekly reports are incredibly detailed.",
+      "What sets Fogee IO apart is their data-driven approach and transparency. We always know exactly how our campaigns are performing and where our money is going. The weekly reports are incredibly detailed.",
     rating: 5,
     result: "5x ROAS achieved",
     service: "Performance Marketing",
@@ -45,7 +45,7 @@ const testimonials = [
     role: "Owner",
     company: "Local Bites Restaurant Group",
     content:
-      "Managing multiple restaurant locations is challenging enough without worrying about marketing. Foggy IO took over our entire digital presence and the results have been phenomenal. Foot traffic is up across all locations.",
+      "Managing multiple restaurant locations is challenging enough without worrying about marketing. Fogee IO took over our entire digital presence and the results have been phenomenal. Foot traffic is up across all locations.",
     rating: 5,
     result: "55% increase in foot traffic",
     service: "Social Media Marketing",
@@ -67,7 +67,7 @@ const testimonials = [
     role: "Managing Partner",
     company: "LegalEase Partners",
     content:
-      "As a law firm, we were skeptical about digital marketing. Foggy IO changed our perspective completely. They helped us compete with firms 10x our size and the quality of leads has been exceptional.",
+      "As a law firm, we were skeptical about digital marketing. Fogee IO changed our perspective completely. They helped us compete with firms 10x our size and the quality of leads has been exceptional.",
     rating: 5,
     result: "380% more qualified leads",
     service: "SEO + PPC",
@@ -78,7 +78,7 @@ const testimonials = [
     role: "E-commerce Director",
     company: "StyleHub",
     content:
-      "Our e-commerce sales were stagnant until we partnered with Foggy IO. Their Facebook and Instagram advertising expertise helped us reach new audiences and scale profitably. Best decision we've made.",
+      "Our e-commerce sales were stagnant until we partnered with Fogee IO. Their Facebook and Instagram advertising expertise helped us reach new audiences and scale profitably. Best decision we've made.",
     rating: 5,
     result: "4.8x ROAS on social ads",
     service: "Facebook & Instagram Ads",
@@ -89,7 +89,7 @@ const testimonials = [
     role: "VP of Marketing",
     company: "CloudSync Solutions",
     content:
-      "We needed a partner who understood B2B marketing, and Foggy IO delivered. They built a complete lead generation system that consistently fills our pipeline with qualified opportunities.",
+      "We needed a partner who understood B2B marketing, and Fogee IO delivered. They built a complete lead generation system that consistently fills our pipeline with qualified opportunities.",
     rating: 5,
     result: "300% pipeline growth",
     service: "B2B Lead Generation",
@@ -100,7 +100,7 @@ const testimonials = [
     role: "Owner",
     company: "Bella Beauty Studios",
     content:
-      "As a small business, I was worried about competing online. Foggy IO made it possible. They created campaigns that brought in new clients consistently without breaking our budget.",
+      "As a small business, I was worried about competing online. Fogee IO made it possible. They created campaigns that brought in new clients consistently without breaking our budget.",
     rating: 5,
     result: "120+ new clients monthly",
     service: "Local Marketing",
@@ -135,9 +135,9 @@ export default function TestimonialsPage() {
   return (
     <>
       <SEOHead
-        title="Client Testimonials & Reviews | Foggy IO Agency"
-        description="Read what 500+ clients say about Foggy IO Agency. Real testimonials from businesses that achieved remarkable growth with our digital marketing services."
-        keywords="Foggy IO reviews, digital marketing testimonials, client success stories, marketing agency reviews"
+        title="Client Testimonials & Reviews | Fogee IO Agency"
+        description="Read what 500+ clients say about Fogee IO Agency. Real testimonials from businesses that achieved remarkable growth with our digital marketing services."
+        keywords="Fogee IO reviews, digital marketing testimonials, client success stories, marketing agency reviews"
         canonicalUrl="https://adveronix.lovable.app/testimonials"
       />
       <Layout>
@@ -154,7 +154,7 @@ export default function TestimonialsPage() {
               </h1>
               <p className="text-xl text-primary-foreground/80 mb-8">
                 Don't just take our word for it. Here's what our clients have 
-                to say about their experience working with Foggy IO.
+                to say about their experience working with Fogee IO.
               </p>
               <div className="flex justify-center items-center gap-2">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -286,7 +286,7 @@ export default function TestimonialsPage() {
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Join hundreds of businesses that have transformed their 
-                digital marketing with Foggy IO.
+                digital marketing with Fogee IO.
               </p>
               <Link to="/contact">
                 <Button variant="accent" size="lg">
