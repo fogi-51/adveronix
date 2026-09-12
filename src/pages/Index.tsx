@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="Foggy IO | Results-Driven Digital Marketing Agency"
+        title="Fogee IO | Results-Driven Digital Marketing Agency"
         description="Data-driven digital marketing for growth brands. Facebook Ads, Google Ads, SEO & lead generation. Book a free strategy call today."
         keywords="digital marketing agency, Facebook Ads agency, Google Ads, SEO services, lead generation, performance marketing, social media marketing"
         canonicalUrl="https://adveronix.lovable.app/"

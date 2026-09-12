@@ -198,7 +198,7 @@ const handler = async (req: Request): Promise<Response> => {
         <div class="container">
           <div class="header">
             <h1>🚀 New Contact Form Submission</h1>
-            <p style="margin: 10px 0 0 0; opacity: 0.9;">Foggy IO Agency Website</p>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Fogee IO Agency Website</p>
           </div>
           <div class="content">
             <div class="field">
@@ -241,7 +241,7 @@ const handler = async (req: Request): Promise<Response> => {
             </div>
           </div>
           <div class="footer">
-            <p>This email was sent from your Foggy IO Agency website contact form.</p>
+            <p>This email was sent from your Fogee IO Agency website contact form.</p>
             <p>Reply directly to this email or contact <strong>${safeEmail}</strong></p>
           </div>
         </div>
@@ -254,7 +254,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log(`Sending email to ${NOTIFY_TO}...`);
 
     const emailResponse = await resend.emails.send({
-      from: "Foggy IO Contact <onboarding@resend.dev>",
+      from: "Fogee IO Contact <onboarding@resend.dev>",
       to: [NOTIFY_TO],
       reply_to: formData.email,
       subject: `New Contact: ${safeFirstName} ${safeLastName} - ${safeService}`,

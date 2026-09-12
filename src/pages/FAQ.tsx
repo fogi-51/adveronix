@@ -16,7 +16,7 @@ const faqCategories = [
     title: "General Questions",
     faqs: [
       {
-        question: "What makes Foggy IO different from other marketing agencies?",
+        question: "What makes Fogee IO different from other marketing agencies?",
         answer:
           "We're 100% focused on measurable results, not vanity metrics. Our data-driven approach, transparent reporting, and no long-term contracts set us apart. We only succeed when you succeed, which is why we're obsessed with ROI and client results.",
       },
@@ -133,8 +133,8 @@ export default function FAQ() {
   return (
     <>
       <SEOHead
-        title="FAQ | Frequently Asked Questions | Foggy IO Agency"
-        description="Find answers to common questions about Foggy IO's digital marketing services, pricing, process, and results. Everything you need to know before getting started."
+        title="FAQ | Frequently Asked Questions | Fogee IO Agency"
+        description="Find answers to common questions about Fogee IO's digital marketing services, pricing, process, and results. Everything you need to know before getting started."
         keywords="digital marketing FAQ, marketing agency questions, Facebook Ads FAQ, SEO questions, marketing pricing"
         canonicalUrl="https://adveronix.lovable.app/faq"
         structuredData={faqSchema}
@@ -153,7 +153,7 @@ export default function FAQ() {
                 <span className="text-gradient">Questions</span>
               </h1>
               <p className="text-xl text-primary-foreground/80">
-                Everything you need to know about working with Foggy IO. 
+                Everything you need to know about working with Fogee IO. 
                 Can't find the answer you're looking for? Reach out to our team.
               </p>
             </div>

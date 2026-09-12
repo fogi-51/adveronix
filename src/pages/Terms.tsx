@@ -5,9 +5,9 @@ const Terms = () => {
   return (
     <>
       <SEOHead
-        title="Terms of Service | Foggy IO Agency"
-        description="Read the terms and conditions for using Foggy IO Agency's digital marketing services. Understand your rights and obligations."
-        keywords="terms of service, terms and conditions, Foggy IO terms, service agreement"
+        title="Terms of Service | Fogee IO Agency"
+        description="Read the terms and conditions for using Fogee IO Agency's digital marketing services. Understand your rights and obligations."
+        keywords="terms of service, terms and conditions, Fogee IO terms, service agreement"
         canonicalUrl="https://adveronix.lovable.app/terms"
       />
       <Layout>
@@ -21,7 +21,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold font-display mb-4">1. Agreement to Terms</h2>
                   <p className="text-muted-foreground">
-                    By accessing or using Foggy IO Agency's website and services, you agree to be bound 
+                    By accessing or using Fogee IO Agency's website and services, you agree to be bound 
                     by these Terms of Service. If you do not agree to these terms, please do not use our services.
                   </p>
                 </section>
@@ -29,7 +29,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold font-display mb-4">2. Services</h2>
                   <p className="text-muted-foreground">
-                    Foggy IO Agency provides digital marketing services including but not limited to 
+                    Fogee IO Agency provides digital marketing services including but not limited to 
                     Facebook Ads, Google Ads, SEO, social media marketing, and lead generation. The 
                     specific services and deliverables will be outlined in individual service agreements 
                     or proposals provided to clients.
@@ -60,7 +60,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold font-display mb-4">5. Intellectual Property</h2>
                   <p className="text-muted-foreground">
-                    All content, strategies, and materials created by Foggy IO Agency remain our 
+                    All content, strategies, and materials created by Fogee IO Agency remain our 
                     intellectual property until full payment is received. Upon full payment, clients 
                     receive a license to use the deliverables for their intended purpose. We retain 
                     the right to showcase work in our portfolio unless otherwise agreed.
@@ -79,7 +79,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold font-display mb-4">7. Limitation of Liability</h2>
                   <p className="text-muted-foreground">
-                    Foggy IO Agency shall not be liable for any indirect, incidental, special, or 
+                    Fogee IO Agency shall not be liable for any indirect, incidental, special, or 
                     consequential damages arising out of or related to our services. Our total liability 
                     shall not exceed the fees paid by the client for the services in question. We do not 
                     guarantee specific results from marketing campaigns as outcomes depend on many factors 

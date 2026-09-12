@@ -40,9 +40,9 @@ const Careers = () => {
   return (
     <>
       <SEOHead
-        title="Careers at Foggy IO | Join Our Digital Marketing Team"
-        description="Join Foggy IO Agency and build your career in digital marketing. Explore open positions in SEO, PPC, social media marketing, and more."
-        keywords="digital marketing careers, marketing jobs, SEO jobs, PPC specialist jobs, Foggy IO careers"
+        title="Careers at Fogee IO | Join Our Digital Marketing Team"
+        description="Join Fogee IO Agency and build your career in digital marketing. Explore open positions in SEO, PPC, social media marketing, and more."
+        keywords="digital marketing careers, marketing jobs, SEO jobs, PPC specialist jobs, Fogee IO careers"
         canonicalUrl="https://adveronix.lovable.app/careers"
       />
       <Layout>
@@ -51,7 +51,7 @@ const Careers = () => {
           <div className="container-wide">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold font-display mb-6">
-                Build Your Career at <span className="text-primary">Foggy IO</span>
+                Build Your Career at <span className="text-primary">Fogee IO</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Join our team of passionate digital marketers and help businesses grow online. 
@@ -104,7 +104,7 @@ const Careers = () => {
         {/* Why Join Us */}
         <section className="py-16 bg-muted/30">
           <div className="container-wide">
-            <h2 className="text-3xl font-bold font-display text-center mb-12">Why Join Foggy IO?</h2>
+            <h2 className="text-3xl font-bold font-display text-center mb-12">Why Join Fogee IO?</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">

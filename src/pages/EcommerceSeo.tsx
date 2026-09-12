@@ -82,7 +82,7 @@ const pageSchema = {
       url: "https://adveronix.lovable.app/services/ecommerce-seo",
       provider: {
         "@type": "Organization",
-        name: "Foggy IO Agency",
+        name: "Fogee IO Agency",
         url: "https://adveronix.lovable.app",
       },
       areaServed: "Worldwide",
@@ -115,7 +115,7 @@ const EcommerceSeo = () => {
   return (
     <>
       <SEOHead
-        title="Ecommerce SEO Services & Strategy Guide | Foggy IO"
+        title="Ecommerce SEO Services & Strategy Guide | Fogee IO"
         description="A complete ecommerce SEO strategy: technical fixes, category and product page optimization, content and links — measured in organic revenue, not rankings."
         keywords="ecommerce seo, ecommerce seo services, ecommerce seo strategy, online store seo, product page seo, category page seo"
         canonicalUrl="https://adveronix.lovable.app/services/ecommerce-seo"

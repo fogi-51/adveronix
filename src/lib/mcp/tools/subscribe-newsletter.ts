@@ -5,7 +5,7 @@ export default defineTool({
   name: "subscribe_newsletter",
   title: "Subscribe to newsletter",
   description:
-    "Subscribe an email address to the Foggy IO newsletter. Sends a notification to the Foggy IO team.",
+    "Subscribe an email address to the Fogee IO newsletter. Sends a notification to the Fogee IO team.",
   inputSchema: {
     email: z.string().email().describe("Email address to subscribe."),
   },
@@ -31,7 +31,7 @@ export default defineTool({
       };
     }
     return {
-      content: [{ type: "text", text: `Subscribed ${email} to the Foggy IO newsletter.` }],
+      content: [{ type: "text", text: `Subscribed ${email} to the Fogee IO newsletter.` }],
       structuredContent: { email, status: "subscribed" },
     };
   },

@@ -8,7 +8,7 @@ import { defineMcp } from "npm:@lovable.dev/mcp-js@0.25.0";
 // src/lib/mcp/tools/get-company-info.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.25.0";
 var INFO = {
-  name: "Foggy IO",
+  name: "Fogee IO",
   tagline: "Digital marketing agency helping brands grow through SEO, paid ads, web design, and content.",
   website: "https://adveronix.lovable.app",
   services: [
@@ -34,8 +34,8 @@ var INFO = {
 };
 var get_company_info_default = defineTool({
   name: "get_company_info",
-  title: "Get Foggy IO company info",
-  description: "Return an overview of Foggy IO: services offered, key pages, and how to get in touch.",
+  title: "Get Fogee IO company info",
+  description: "Return an overview of Fogee IO: services offered, key pages, and how to get in touch.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({
@@ -50,7 +50,7 @@ import { z } from "npm:zod@^3.25.76";
 var subscribe_newsletter_default = defineTool2({
   name: "subscribe_newsletter",
   title: "Subscribe to newsletter",
-  description: "Subscribe an email address to the Foggy IO newsletter. Sends a notification to the Foggy IO team.",
+  description: "Subscribe an email address to the Fogee IO newsletter. Sends a notification to the Fogee IO team.",
   inputSchema: {
     email: z.string().email().describe("Email address to subscribe.")
   },
@@ -76,7 +76,7 @@ var subscribe_newsletter_default = defineTool2({
       };
     }
     return {
-      content: [{ type: "text", text: `Subscribed ${email} to the Foggy IO newsletter.` }],
+      content: [{ type: "text", text: `Subscribed ${email} to the Fogee IO newsletter.` }],
       structuredContent: { email, status: "subscribed" }
     };
   }
@@ -88,7 +88,7 @@ import { z as z2 } from "npm:zod@^3.25.76";
 var submit_contact_default = defineTool3({
   name: "submit_contact_inquiry",
   title: "Submit contact inquiry",
-  description: "Submit a contact / strategy call inquiry to the Foggy IO team. Use when a user wants to book a free strategy call or reach out about a project.",
+  description: "Submit a contact / strategy call inquiry to the Fogee IO team. Use when a user wants to book a free strategy call or reach out about a project.",
   inputSchema: {
     firstName: z2.string().min(1).describe("Contact first name."),
     lastName: z2.string().min(1).describe("Contact last name."),
@@ -133,9 +133,9 @@ var submit_contact_default = defineTool3({
 // src/lib/mcp/index.ts
 var mcp_default = defineMcp({
   name: "adveronix-mcp",
-  title: "Foggy IO MCP",
+  title: "Fogee IO MCP",
   version: "0.1.0",
-  instructions: "Tools for the Foggy IO marketing agency website. Use get_company_info to learn about services, subscribe_newsletter to add an email to the newsletter, and submit_contact_inquiry to book a free strategy call or send a project inquiry.",
+  instructions: "Tools for the Fogee IO marketing agency website. Use get_company_info to learn about services, subscribe_newsletter to add an email to the newsletter, and submit_contact_inquiry to book a free strategy call or send a project inquiry.",
   tools: [get_company_info_default, subscribe_newsletter_default, submit_contact_default]
 });
 

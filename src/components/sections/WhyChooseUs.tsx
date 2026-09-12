@@ -53,7 +53,7 @@ export function WhyChooseUs() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="inline-block text-accent font-semibold mb-4 tracking-wide uppercase text-sm">
-              Why Foggy IO
+              Why Fogee IO
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Your Growth Partner,{" "}
