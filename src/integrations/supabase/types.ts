@@ -25,6 +25,8 @@ export type Database = {
           name: string
           read: boolean
           service: string | null
+          source: string
+          status: string
         }
         Insert: {
           budget?: string | null
@@ -36,6 +38,8 @@ export type Database = {
           name: string
           read?: boolean
           service?: string | null
+          source?: string
+          status?: string
         }
         Update: {
           budget?: string | null
@@ -47,6 +51,32 @@ export type Database = {
           name?: string
           read?: boolean
           service?: string | null
+          source?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          source: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          source?: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          source?: string
+          status?: string
         }
         Relationships: []
       }
