@@ -56,7 +56,39 @@ interface ContactFormData {
   captchaToken?: string;
   /** Honeypot field — must stay empty; only bots fill it in. */
   companyWebsiteConfirm?: string;
+  /** "website" (default, saved by the browser client) or "mcp" (saved here). */
+  source?: string;
+}
 
+/** Stores an inquiry that did not come from the website form (e.g. an AI agent via MCP). */
+async function saveInquiry(formData: ContactFormData, source: string): Promise<void> {
+  const url = Deno.env.get("SUPABASE_URL");
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url || !serviceKey) {
+    console.error("Cannot save inquiry: backend credentials missing");
+    return;
+  }
+  const res = await fetch(`${url}/rest/v1/contacts`, {
+    method: "POST",
+    headers: {
+      apikey: serviceKey,
+      Authorization: `Bearer ${serviceKey}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({
+      name: `${formData.firstName} ${formData.lastName}`.trim(),
+      email: formData.email,
+      company: formData.company || null,
+      service: formData.service || null,
+      budget: formData.budget || null,
+      message: formData.message,
+      source,
+    }),
+  });
+  if (!res.ok) {
+    console.error("Failed to save inquiry:", res.status, await res.text());
+  }
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -163,6 +195,12 @@ const handler = async (req: Request): Promise<Response> => {
           headers: { "Content-Type": "application/json", ...corsHeaders },
         }
       );
+    }
+
+    // Website submissions are stored by the browser client; anything else (e.g. AI
+    // agents via MCP) is stored here so it also shows up in the dashboard.
+    if (formData.source && formData.source !== "website") {
+      await saveInquiry(formData, formData.source);
     }
 
     // Escape all user inputs for safe HTML rendering

@@ -45,6 +45,31 @@ function escapeHtml(text: string): string {
 
 interface SubscriptionData {
   email: string;
+  /** "website" (default) or "mcp" when an AI agent subscribed someone. */
+  source?: string;
+}
+
+/** Stores the subscriber so it shows up in the admin dashboard. Ignores duplicates. */
+async function saveSubscriber(email: string, source: string): Promise<void> {
+  const url = Deno.env.get("SUPABASE_URL");
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!url || !serviceKey) {
+    console.error("Cannot save subscriber: backend credentials missing");
+    return;
+  }
+  const res = await fetch(`${url}/rest/v1/newsletter_subscribers`, {
+    method: "POST",
+    headers: {
+      apikey: serviceKey,
+      Authorization: `Bearer ${serviceKey}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal,resolution=merge-duplicates",
+    },
+    body: JSON.stringify({ email, source, status: "subscribed" }),
+  });
+  if (!res.ok) {
+    console.error("Failed to save subscriber:", res.status, await res.text());
+  }
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -70,7 +95,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { email }: SubscriptionData = await req.json();
+    const { email, source }: SubscriptionData = await req.json();
     console.log("Received newsletter subscription from:", clientIp);
 
     // Validate email
@@ -109,6 +134,9 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
+
+    // Store the subscriber for the admin dashboard.
+    await saveSubscriber(email, source === "mcp" ? "mcp" : "website");
 
     // Escape email for safe HTML rendering
     const safeEmail = escapeHtml(email);

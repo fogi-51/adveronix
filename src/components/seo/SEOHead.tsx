@@ -11,6 +11,7 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: string;
   structuredData?: object;
+  noindex?: boolean;
 }
 
 export function SEOHead({
@@ -21,6 +22,7 @@ export function SEOHead({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   structuredData,
+  noindex = false,
 }: SEOHeadProps) {
   useEffect(() => {
     // Update document title
@@ -41,6 +43,7 @@ export function SEOHead({
     // Basic meta tags
     updateMeta("description", description);
     if (keywords) updateMeta("keywords", keywords);
+    updateMeta("robots", noindex ? "noindex, nofollow" : "index, follow");
 
     // Open Graph tags
     updateMeta("og:title", title, true);
@@ -77,7 +80,7 @@ export function SEOHead({
       }
       script.textContent = JSON.stringify(structuredData);
     }
-  }, [title, description, keywords, canonicalUrl, ogImage, ogType, structuredData]);
+  }, [title, description, keywords, canonicalUrl, ogImage, ogType, structuredData, noindex]);
 
   return null;
 }
