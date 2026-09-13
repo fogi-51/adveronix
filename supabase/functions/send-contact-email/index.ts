@@ -197,6 +197,12 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Website submissions are stored by the browser client; anything else (e.g. AI
+    // agents via MCP) is stored here so it also shows up in the dashboard.
+    if (formData.source && formData.source !== "website") {
+      await saveInquiry(formData, formData.source);
+    }
+
     // Escape all user inputs for safe HTML rendering
     const safeFirstName = escapeHtml(formData.firstName);
     const safeLastName = escapeHtml(formData.lastName);
