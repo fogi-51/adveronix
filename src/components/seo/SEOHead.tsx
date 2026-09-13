@@ -80,7 +80,7 @@ export function SEOHead({
       }
       script.textContent = JSON.stringify(structuredData);
     }
-  }, [title, description, keywords, canonicalUrl, ogImage, ogType, structuredData]);
+  }, [title, description, keywords, canonicalUrl, ogImage, ogType, structuredData, noindex]);
 
   return null;
 }
