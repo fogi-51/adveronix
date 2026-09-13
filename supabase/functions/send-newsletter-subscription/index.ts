@@ -135,6 +135,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Store the subscriber for the admin dashboard.
+    await saveSubscriber(email, source === "mcp" ? "mcp" : "website");
+
     // Escape email for safe HTML rendering
     const safeEmail = escapeHtml(email);
 

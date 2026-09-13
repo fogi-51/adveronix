@@ -21,7 +21,7 @@ export default defineTool({
     const res = await fetch(`${supabaseUrl}/functions/v1/send-newsletter-subscription`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, source: "mcp" }),
     });
     const body = await res.text();
     if (!res.ok) {

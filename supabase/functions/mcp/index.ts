@@ -66,7 +66,7 @@ var subscribe_newsletter_default = defineTool2({
     const res = await fetch(`${supabaseUrl}/functions/v1/send-newsletter-subscription`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, source: "mcp" })
     });
     const body = await res.text();
     if (!res.ok) {
@@ -112,7 +112,7 @@ var submit_contact_default = defineTool3({
     const res = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(input)
+      body: JSON.stringify({ ...input, source: "mcp" })
     });
     const body = await res.text();
     if (!res.ok) {

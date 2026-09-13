@@ -32,7 +32,7 @@ export default defineTool({
     const res = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
+      body: JSON.stringify({ ...input, source: "mcp" }),
     });
     const body = await res.text();
     if (!res.ok) {
