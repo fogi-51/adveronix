@@ -41,7 +41,7 @@ export function Navbar() {
               className="w-10 h-10 object-contain"
             />
             <span className="text-xl font-bold text-primary-foreground font-display">
-              Fogee IO
+              FGI
             </span>
           </Link>
 
